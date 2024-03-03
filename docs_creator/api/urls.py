@@ -1,5 +1,6 @@
-from rest_framework.authtoken import views
 from django.urls import path
+from rest_framework.authtoken import views
+
 from .views import upload_file
 
 urlpatterns = [

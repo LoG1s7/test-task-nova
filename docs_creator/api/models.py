@@ -5,6 +5,7 @@ User = get_user_model()
 
 
 class File(models.Model):
+    """Модель файла"""
     name = models.CharField(
         max_length=200,
         verbose_name='Название',
