@@ -36,14 +36,15 @@ def upload_file(request):
             "parents": [settings.FOLDER_ID]
         }
         media = MediaFileUpload(filename, mimetype="text/txt")
-        service.files().create(
+        file = (service.files().create(
             body=file_metadata,
             media_body=media,
             fields="id"
-        ).execute()
+        ).execute())
 
     except HttpError as error:
         print(f"An error occurred: {error}")
+        file = None
 
     os.remove(filename)
-    return Response(serializer.validated_data, status=HTTP_200_OK)
+    return Response(file.get("id"), status=HTTP_200_OK)
